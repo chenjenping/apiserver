@@ -6,7 +6,7 @@ module Queries
     def resolve(id:)
       ::Course.includes({ chapters: :lectures }).find(id)
     rescue ActiveRecord::RecordNotFound => _e
-      GraphQL::ExecutionError.new('課程不存在')
+      GraphQL::ExecutionError.new("course not found")
     end
   end
 end

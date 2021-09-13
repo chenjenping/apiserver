@@ -9,7 +9,7 @@ module Mutations
     field :course, Types::CourseType, null: true
     field :errors, [String], null: false
 
-    def resolve(id: , title: ,instructor: ,description: nil, chapters:)
+    def resolve(id: , title: ,instructor: ,description: nil, chapters: [])
       course = ::Course.includes({ chapters: :lectures }).find(id)
       chapters_attributes = prepare_chapters_attributes(chapters)
       ::Course.transaction do

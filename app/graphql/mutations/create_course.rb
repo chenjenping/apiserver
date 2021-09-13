@@ -8,7 +8,7 @@ module Mutations
     field :course, Types::CourseType, null: true
     field :errors, [String], null: false
 
-    def resolve(title: ,instructor: ,description: nil, chapters:)
+    def resolve(title: ,instructor: ,description: nil, chapters: [])
       chapters_attributes = prepare_chapters_attributes(chapters)
       course = ::Course.new(
         title: title,

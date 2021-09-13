@@ -16,6 +16,8 @@ module Mutations
         course.update!(title: title, instructor: instructor, description: description)
         course.update_chapters!(chapters_attributes)
       end
+
+      # 為了讓 chapters 和 lectures 順序變動反映出來，目前暫時用這個解法
       course.chapters.reset
       ActiveRecord::Associations::Preloader.new.preload(course, { chapters: :lectures })
 
